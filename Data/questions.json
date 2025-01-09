@@ -1,0 +1,41 @@
+[
+  {
+    "id": 0,
+    "intitule": "Quelle est la capitale de la France ?",
+    "type": "radio",
+    "reponses": [
+      { "id": 0, "intitule": "Paris", "correct": true },
+      { "id": 1, "intitule": "Londres", "correct": false },
+      { "id": 2, "intitule": "Berlin", "correct": false },
+      { "id": 3, "intitule": "Madrid", "correct": false }
+    ]
+  },
+  {
+    "id": 1,
+    "intitule": "Quelle est la capitale de l'Espagne ?",
+    "type": "radio",
+    "reponses": [
+      { "id": 0, "intitule": "Paris", "correct": false },
+      { "id": 1, "intitule": "Londres", "correct": false },
+      { "id": 2, "intitule": "Berlin", "correct": false },
+      { "id": 3, "intitule": "Madrid", "correct": true }
+    ]
+  },
+  {
+    "id": 2,
+    "intitule": "Quelle est la capitale de l'Allemagne ?",
+    "type": "text",
+    "reponses": [{ "id": 0, "intitule": "Berlin", "correct": true }]
+  },
+  {
+    "id": 3,
+    "intitule": "Quelles sont les pays frontaliers de la France ?",
+    "type": "checkbox",
+    "reponses": [
+      { "id": 0, "intitule": "Russie", "correct": false },
+      { "id": 1, "intitule": "Italie", "correct": true },
+      { "id": 2, "intitule": "Allemagne", "correct": true },
+      { "id": 3, "intitule": "Belgique", "correct": true }
+    ]
+  }
+]

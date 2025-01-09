@@ -7,5 +7,13 @@
 </head>
 <body>
     <h1>QuizzHub</h1>
+
+    <?php
+    require 'Classes/AutoLoader.php';
+    AutoLoader::register();
+
+    $question = Ressource\Question::getQuestionById(2);
+    $question->show();
+    ?>
 </body>
 </html>
