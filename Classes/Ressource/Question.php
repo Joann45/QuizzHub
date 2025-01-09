@@ -32,17 +32,21 @@ class Question{
 
     public function show(){
         echo '<h2>' . $this->intitule . '</h2>';
-        echo '<form method="post" action="analyse.php">';
+        echo '<form method="post" action="analyse.php">'; // ! Attention à l'action créer le fichier analyse.php
+        echo '<input type="hidden" name="id" value="' . $this->id . '">';
         switch($this->type){
             case 'text':
+                echo '<input type="hidden" name="type" value="text">';
                 echo '<input type="text" name="question_' . $this->id . '">';
                 break;
             case 'radio':
+                echo '<input type="hidden" name="type" value="radio">';
                 foreach($this->reponses as $key => $reponse){
                     echo '<input type="radio" name="question_' . $this->id . '" value="' . $key . '">' . $reponse['intitule'] . '<br>';
                 }
                 break;
             case 'checkbox':
+                echo '<input type="hidden" name="type" value="checkbox">';
                 foreach($this->reponses as $key => $reponse){
                     echo '<input type="checkbox" name="question_' . $this->id . '[]" value="' . $key . '">' . $reponse['intitule'] . '<br>';
                 }
