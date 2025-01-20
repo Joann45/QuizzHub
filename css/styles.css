@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ff6600;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    color: #ffffff;
+    text-align: center;
+}
+
+nav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav li a {
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav li a:hover {
+    background-color: #ff9900;
+    color: #000000;
+    border-radius: 4px;
+}
+
+form {
+    background-color: #2c2c2c;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 20px 0;
+    border: none;
+    border-radius: 4px;
+    background-color: #444;
+    color: #ffffff;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+    color: #ccc;
+}
+
+input[type="submit"] {
+    background-color: #ffffff;
+    color: #ff6600;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+}
+
+input[type="submit"]:hover {
+    background-color: #e65c00;
+}
+
+.option {
+    margin-bottom: 10px;
+}
+
+.correct {
+    color: #00cc00;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: #cc0000;
+    font-weight: bold;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #555;
+}
+
+.score {
+    text-align: center;
+    font-size: 1.5em;
+    color: #ffffff;
+}
+
+#answers div {
+    margin-bottom: 10px;
+}

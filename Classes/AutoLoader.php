@@ -11,3 +11,4 @@ class AutoLoader{
         require 'Classes/' . $class . '.php';
     }
 }
+?>
