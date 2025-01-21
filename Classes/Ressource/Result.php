@@ -7,7 +7,7 @@ class Result {
         $score = 0;
         echo '<h1>Historique des réponses de ' . htmlspecialchars($_SESSION['userName']) . '</h1>';
         foreach ($userAnswers as $questionId => $answer) {
-            $question = Question::getQuestionById($questionId);
+            $question = QuestionRepository::findById($questionId);
             if (!$question) continue;
             echo '<h3>' . htmlspecialchars($question->getIntitule()) . '</h3>';
             

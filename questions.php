@@ -4,7 +4,7 @@ session_start();
 require 'Classes/AutoLoader.php';
 AutoLoader::register();
 
-use Ressource\Question;
+use Ressource\QuestionRepository;
 
 if (!isset($_SESSION['userName'])) {
     header('Location: index.php');
@@ -22,12 +22,12 @@ echo '<nav>
 
 echo '<link rel="stylesheet" href="css/styles.css">';
 
-$questions = Question::getQuestions();
+$questions = QuestionRepository::findAll();
 
 echo '<h1>Liste des questions disponibles</h1>';
 echo '<ul>';
 foreach ($questions as $question) {
-    echo '<li>' . htmlspecialchars($question['intitule']) . '</li>';
+    echo '<li> <a href="create_question.php?id=' . $question->getId() . '">'. htmlspecialchars($question->getIntitule()) .  '</a></li>';
 }
 echo '</ul>';
 ?>

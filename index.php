@@ -7,17 +7,21 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.php">Accueil</a></li>
-            <li><a href="result.php">Historique</a></li>
-            <li><a href="create_question.php">Créer une Question</a></li>
-            <li><a href="questions.php">Questions</a></li>
-        </ul>
-    </nav>
-
     <?php
+    require 'Classes/AutoLoader.php';
+    AutoLoader::register();
+    use Ressource\QuestionRepository;
+
+    // Inclure la barre de navigation
+    require 'Classes/Ressource/navbar.php';
+
+    $availableQuestions = count(QuestionRepository::findAll());
+    echo '<p>Nombre de questions disponibles : ' . $availableQuestions . '</p>';
     session_start();
+
+    if (!file_exists('Data/quizz.db')) {
+        \Database\Connection::initDB();
+    }
 
     if (!isset($_SESSION['userName'])) {
         if (isset($_GET['action']) && $_GET['action'] === 'start') {
@@ -37,13 +41,6 @@
             exit;
         }
     }
-
-    require 'Classes/AutoLoader.php';
-    AutoLoader::register();
-
-    $availableQuestions = count(Ressource\Question::getQuestions());
-    echo '<p>Nombre de questions disponibles : ' . $availableQuestions . '</p>';
-
     if (!isset($_SESSION['currentQuestion'])) {
         $_SESSION['currentQuestion'] = 0;
     }
@@ -57,19 +54,14 @@
         exit;
     }
 
-    $question = Ressource\Question::getQuestionById($_SESSION['currentQuestion']);
+    $question = QuestionRepository::findById($_SESSION['currentQuestion']);
     if ($_SESSION['currentQuestion'] >= $_SESSION['quizLimit'] || !$question) {
+        $score = isset($_SESSION['score']) ? $_SESSION['score'] : 0;
+        $player = new \Database\Joueur($_SESSION['userName'], $score);
         try {
-            $pdo = new PDO('sqlite:Data/quizz.db');
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $pdo->prepare('INSERT INTO scores (player, score) VALUES (:player, :score)');
-            $score = isset($_SESSION['score']) ? $_SESSION['score'] : 0;
-            $stmt->execute([
-                ':player' => $_SESSION['userName'],
-                ':score' => $score
-            ]);
+            $player->save();
         } catch (\Exception $e) {
-            // Gestion des erreurs
+            // ...gérer l'erreur...
         }
         header('Location: result.php');
         exit;
